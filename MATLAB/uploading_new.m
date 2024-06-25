@@ -39,7 +39,6 @@ lair_on_2 = extractor_data(1, "strect_online_trajectories_", dir("strect_online_
 lair_on_3 = extractor_data(1, "stretch_online_dis_ERROR", dir("stretch_online_dis_ERROR"), 1, "errors", 1);
 
 LAIR_ON = cell2struct([struct2cell(lair_on_1); struct2cell(lair_on_2); struct2cell(lair_on_3)], [fieldnames(lair_on_1); fieldnames(lair_on_2); fieldnames(lair_on_3)]);
-cd ..
 
 fileID = fopen("LAIR.txt", 'r');
 % Legge i dati dal file
@@ -47,13 +46,14 @@ formato = repmat('%f ', 1, 3);  % Specifica il formato dei dati con 15 colonne
 dati = textscan(fileID, formato);
 % Chiude il file
 fclose(fileID);
-cd ..
+
 % Trasforma i dati in una matrice
 matrice = cat(2, dati{:});
 REF_LAIR.points = matrice;
 
 clear on_1 on_2 on_3 off_1 off_2 off_3 lair_off_1 lair_off_2 lair_off_3 lair_on_1 lair_on_2 lair_on_3
-
+cd ..
+cd ..
 function out = extractor_data(alphabet, address, folder, number_column, type_data, in)
     out = struct;
 for i = 1 : length(alphabet)
